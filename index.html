@@ -1,130 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🚀 LaunchWise | Web3 Agency</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LaunchWise — Web3 Token Agency</title>
+<meta name="description" content="LaunchWise — 0→100% token launch agency: smart contracts, tokenomics, airdrop bots, listings, marketing, investor relations.">
+<style>
+  /* ==================  THEME  ================== */
+  :root{
+    --bg:#03030a;
+    --fg:#eaf6ff;
+    --c1:#00eaff;
+    --c2:#6a5cff;
+    --c3:#ff2dfc;
+    --c4:#00ff9c;
+    --glass:rgba(255,255,255,.06);
+    --stroke:rgba(0,234,255,.25);
+    --shadow:0 0 20px rgba(0,234,255,.35), 0 0 40px rgba(255,45,252,.15);
+    --radius:18px;
+  }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Orbitron', sans-serif;
-    }
+  *{box-sizing:border-box} html,body{margin:0;height:100%;scroll-behavior:smooth}
+  body{
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color:var(--fg); background:radial-gradient(1200px at 50% -10%,#0b0b1a,transparent 60%), var(--bg);
+    overflow-x:hidden;
+  }
 
-    body {
-      background: radial-gradient(circle at top, #0a0a0a, #000);
-      color: #fff;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
+  /* ========== STARFIELD CANVAS (super light) ========= */
+  canvas#field{position:fixed; inset:0; z-index:-1; filter:blur(.2px) brightness(.9)}
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,255,255,0.2);
-      z-index: 1000;
-    }
+  /* ==================  HEADER  ================== */
+  .nav{
+    position:sticky; top:0; backdrop-filter:blur(10px);
+    background:linear-gradient(180deg, rgba(3,3,10,.8), rgba(3,3,10,.35));
+    border-bottom:1px solid var(--stroke); z-index:5;
+  }
+  .nav-inner{
+    max-width:1200px; margin:auto; padding:14px 18px; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-weight:800; letter-spacing:.5px; display:flex; align-items:center; gap:10px; font-size:22px;
+    background:linear-gradient(90deg,var(--c1),var(--c3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 0 18px rgba(0,234,255,.6);
+  }
+  .nav a{color:var(--fg); text-decoration:none; padding:10px 12px; border-radius:12px; opacity:.9}
+  .nav a:hover{color:white; box-shadow:0 0 0 1px var(--stroke), var(--shadow)}
 
-    .logo {
-      height: 50px;
-    }
+  /* ==================  HERO  ================== */
+  .hero{
+    max-width:1200px; margin:0 auto; padding:80px 18px 60px; text-align:center;
+  }
+  .title{
+    font-size: clamp(34px, 6vw, 66px);
+    line-height:1.05; margin:8px auto 14px;
+    background:conic-gradient(from 90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c1));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 0 25px rgba(0,234,255,.35), 0 0 45px rgba(255,45,252,.25);
+    animation:flare 6s ease-in-out infinite;
+  }
+  @keyframes flare{
+    0%{filter:brightness(1)}
+    50%{filter:brightness(1.25) drop-shadow(0 0 30px rgba(0,234,255,.35))}
+    100%{filter:brightness(1)}
+  }
+  .subtitle{opacity:.9; font-size:clamp(16px,2.6vw,20px); max-width:900px; margin:0 auto 26px}
+  .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .btn{
+    position:relative; display:inline-flex; align-items:center; gap:10px; padding:14px 20px; border-radius:999px;
+    border:1px solid var(--stroke); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    color:white; text-decoration:none; font-weight:700; letter-spacing:.2px; box-shadow:var(--shadow); transition:.25s;
+  }
+  .btn:hover{transform:translateY(-2px) scale(1.02); box-shadow:0 0 30px rgba(0,234,255,.55), 0 0 60px rgba(255,45,252,.25)}
+  .btn.primary{border-color:rgba(0,255,230,.45); background:
+    radial-gradient(120px at 30% 20%, rgba(0,255,255,.25), transparent 60%),
+    linear-gradient(180deg, rgba(0,255,255,.08), rgba(0,0,0,.0));
+  }
 
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #0ff;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      color: #f0f;
-      text-shadow: 0 0 10px #f0f, 0 0 20px #0ff;
-    }
+  /* ==================  SECTIONS  ================== */
+  section{scroll-margin-top:80px}
+  .wrap{max-width:1200px; margin:0 auto; padding:42px 18px}
+  .grid{display:grid; gap:18px}
+  @media(min-width:840px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-2{grid-template-columns:repeat(2,1fr)} }
 
-    section {
-      min-height: 100vh;
-      padding: 120px 60px 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+  .card{
+    background:linear-gradient(180deg, var(--glass), transparent 140%);
+    border:1px solid var(--stroke); border-radius:var(--radius); padding:20px; position:relative; overflow:hidden;
+  }
+  .card:before{
+    content:""; position:absolute; inset:-120px -120px auto auto; width:220px; height:220px; border-radius:50%;
+    background:radial-gradient(closest-side, rgba(0,255,255,.16), transparent 70%);
+    filter:blur(10px); transform:translate3d(0,0,0);
+    animation:orb 10s linear infinite;
+  }
+  @keyframes orb{from{transform:translate(0,0) rotate(0)} to{transform:translate(0,0) rotate(360deg)}}
+  .h{font-size:22px; margin:2px 0 10px; text-shadow:0 0 12px rgba(0,234,255,.45)}
+  .muted{opacity:.86; line-height:1.6}
 
-    h1, h2 {
-      margin-bottom: 20px;
-      font-size: 3rem;
-      text-shadow: 0 0 15px #0ff, 0 0 25px #f0f;
-    }
+  /* ==================  TIMELINE  ================== */
+  .timeline{position:relative; padding-left:18px}
+  .timeline:before{content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:linear-gradient(var(--c1),var(--c3))}
+  .step{position:relative; padding-left:26px; margin:16px 0}
+  .step:before{
+    content:""; position:absolute; left:2px; top:4px; width:16px; height:16px; border-radius:50%;
+    background:radial-gradient(circle, var(--c1), var(--c3)); box-shadow:0 0 12px var(--c1), 0 0 24px var(--c3);
+    animation:pulse 2.8s infinite;
+  }
+  @keyframes pulse{50%{box-shadow:0 0 22px var(--c1), 0 0 44px var(--c3)}}
 
-    p {
-      max-width: 800px;
-      margin: 0 auto 20px;
-      line-height: 1.6;
-      font-size: 1.2rem;
-    }
+  /* ==================  TABLE  ================== */
+  .table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:14px; border:1px solid var(--stroke)}
+  .table th,.table td{padding:14px; text-align:left; background:rgba(255,255,255,.04)}
+  .table th{background:linear-gradient(180deg, rgba(0,255,255,.12), rgba(255,255,255,.03))}
+  .table tr+tr td{border-top:1px solid rgba(255,255,255,.06)}
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 30px;
-      border: 2px solid #0ff;
-      color: #0ff;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #0ff;
-      color: #000;
-      box-shadow: 0 0 15px #0ff, 0 0 30px #0ff;
-    }
+  /* ==================  PRICING  ================== */
+  .price{
+    font-size:36px; font-weight:800;
+    background:linear-gradient(90deg,var(--c1),var(--c3)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 0 18px rgba(0,234,255,.4);
+  }
 
-    .service, .token, .contact {
-      margin: 20px;
-      padding: 20px;
-      border: 1px solid rgba(0,255,255,0.3);
-      border-radius: 10px;
-      background: rgba(0,0,0,0.5);
-      box-shadow: 0 0 10px rgba(0,255,255,0.2);
-      animation: float 6s ease-in-out infinite;
-    }
+  /* ==================  REVEAL ON SCROLL  ================== */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s, transform .6s}
+  .reveal.show{opacity:1; transform:none}
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      border-top: 1px solid rgba(0,255,255,0.2);
-      background: rgba(0,0,0,0.7);
-    }
-    footer a {
-      color: #0ff;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-    footer a:hover {
-      color: #f0f;
-      text-shadow: 0 0 10px #f0f;
-    }
-  </style>
+  /* ==================  FOOTER  ================== */
+  footer{border-top:1px solid var(--stroke); background:rgba(3,3,10,.6)}
+  .foot{max-width:1200px; margin:0 auto; padding:26px 18px; text-align:center; font-size:14px; opacity:.85}
+  .links a{color:var(--fg); text-decoration:none; margin:0 10px}
+  .links a:hover{color:#fff; text-shadow:0 0 12px var(--c1)}
+</style>
 </head>
 <body>
-  <header>
-    <!-- Base64 logotip -->
-    <img class="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAACeCAYAAABdWx0uAAAACXBIWXMAAAsTAAALEwEAmpwYAAABpElEQVR4nO3UsQ2DMBBFQZcAKbADZUAJWEErqABxBoFmyQm9QUJAHy73UeEnnnddrP9/LfKkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSkpKSk
+
+<canvas id="field"></canvas>
+
+<!-- ================== NAV ================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">🚀 LaunchWise</div>
+    <div class="links">
+      <a href="#services">Services</a>
+      <a href="#process">0→100</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#pricing">Fees</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================== HERO ================== -->
+<header class="hero">
+  <div class="badge" style="margin-bottom:10px; opacity:.9">Web3 Launch Agency</div>
+  <h1 class="title">From Idea to Exchange — <br>We Launch Your Token 0→100%</h1>
+  <p class="subtitle">
+    Smart contracts, tokenomics, airdrop bot, listing, marketing, and investor relations — all in one place.
+  </p>
+  <div class="cta">
+    <a class="btn primary" href="https://t.me/LaunchWise_airdropbot" target="_blank">Start Airdrop Bot</a>
+    <a class="btn" href="https://t.me/LaunchWiseSupport" target="_blank">Talk to Support</a>
+  </div>
+</header>
+
+<!-- ================== SERVICES ================== -->
+<section id="services" class="wrap reveal">
+  <h2 class="h">Our Services</h2>
+  <p class="muted">Enterprise-grade stack and clear deliverables.</p>
+  <div class="grid cols-3" style="margin-top:16px">
+    <div class="card">
+      <h3 class="h">Smart Contracts</h3>
+      <p class="muted">ERC-20/721/1155, vesting, mint/burn, anti-bot, multi-sig, audits & testnet/mainnet deployments.</p>
+    </div>
+    <div class="card">
+      <h3 class="h">Tokenomics</h3>
+      <p class="muted">Supply modeling, allocation, vesting cliff/linear schedules, liquidity & treasury playbooks.</p>
+    </div>
+    <div class="card">
+      <h3 class="h">Airdrop & Community</h3>
+      <p class="muted">Referral, wallet linking, balance tracking, anti-sybil filters — via our Telegram bot.</p>
+    </div>
+    <div class="card">
+      <h3 class="h">Listing & Liquidity</h3>
+      <p class="muted">DEX setup, liquidity management, CEX outreach, market-making partners.</p>
+    </div>
+    <div class="card">
+      <h3 class="h">Marketing</h3>
+      <p class="muted">Launch calendar, KOLs, campaigns, content & landing pages aligned with on-chain goals.</p>
+    </div>
+    <div class="card">
+      <h3 class="h">Investor Relations</h3>
+      <p class="muted">Pitch, data-room, KPI dashboards, weekly reporting, compliance guidance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== PROCESS ================== -->
+<section id="process" class="wrap reveal">
+  <h2 class="h">0→100% Launch Process</h2>
+  <div class="timeline">
+    <div class="step">
+      <h4 class="h">1) Discovery</h4>
+      <p class="muted">Scope, chain selection, milestones, risk & budget.</p>
+    </div>
+    <div class="step">
+      <h4 class="h">2) Tokenomics</h4>
+      <p class="muted">Supply, allocations, vesting, incentives, buybacks.</p>
+    </div>
+    <div class="step">
+      <h4 class="h">3) Contracts</h4>
+      <p class="muted">Implementation, tests, audit pass, multi-sig ops.</p>
+    </div>
+    <div class="step">
+      <h4 class="h">4) Airdrop & Community</h4>
+      <p class="muted">Referral + tasks, KYC/anti-sybil, snapshot & claim.</p>
+    </div>
+    <div class="step">
+      <h4 class="h">5) Listing & Liquidity</h4>
+      <p class="muted">DEX launch, liquidity plan, CEX negotiations.</p>
+    </div>
+    <div class="step">
+      <h4 class="h">6) Post-Launch</h4>
+      <p class="muted">Analytics, reporting, roadmap delivery, upgrades.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== TOKENOMICS ================== -->
+<section id="tokenomics" class="wrap reveal">
+  <h2 class="h">Sample Tokenomics (editable)</h2>
+  <p class="muted">We tailor the model to your goals; here is a baseline example.</p>
+  <div class="card" style="margin-top:14px">
+    <table class="table">
+      <thead><tr><th>Allocation</th><th>%</th><th>Vesting</th></tr></thead>
+      <tbody>
+        <tr><td>Community & Airdrop</td><td>25%</td><td>TGE 10% · 6–12m linear</td></tr>
+        <tr><td>Liquidity</td><td>15%</td><td>Locked 12–24m</td></tr>
+        <tr><td>Treasury</td><td>20%</td><td>Cliff 6m · 24m linear</td></tr>
+        <tr><td>Team</td><td>15%</td><td>Cliff 12m · 24m linear</td></tr>
+        <tr><td>Investors</td><td>15%</td><td>Cliff 6m · 18m linear</td></tr>
+        <tr><td>Ecosystem/Grants</td><td>10%</td><td>As-needed with governance</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================== PRICING / FEES ================== -->
+<section id="pricing" class="wrap reveal">
+  <h2 class="h">Fees</h2>
+  <div class="grid cols-2" style="margin-top:10px">
+    <div class="card">
+      <h3 class="h">Setup</h3>
+      <p class="muted">Fixed scope for contracts, airdrop bot, and launch readiness.</p>
+      <div class="price">Fixed — case by case</div>
+      <p class="muted">Billed per milestone; audit costs (if required) are separate.</p>
+    </div>
+    <div class="card">
+      <h3 class="h">Success Fee</h3>
+      <p class="muted">We take a small share only when you succeed.</p>
+      <div class="price">~4–8% of tokens / raise</div>
+      <p class="muted">Exact % is negotiated based on scope, chain, and liquidity plan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== FAQ ================== -->
+<section id="faq" class="wrap reveal">
+  <h2 class="h">FAQ</h2>
+  <div class="grid cols-2" style="margin-top:10px">
+    <div class="card">
+      <h4 class="h">Which chains?</h4>
+      <p class="muted">EVM (Ethereum, BSC, Base, Polygon, Arbitrum…), plus others on request.</p>
+    </div>
+    <div class="card">
+      <h4 class="h">Audits?</h4>
+      <p class="muted">Yes. We provide internal reviews and can coordinate external audits.</p>
+    </div>
+    <div class="card">
+      <h4 class="h">KYC/Compliance?</h4>
+      <p class="muted">We advise best-practice; final responsibility remains with the project.</p>
+    </div>
+    <div class="card">
+      <h4 class="h">Can you manage listing?</h4>
+      <p class="muted">We prepare docs, intro you to partners, and help structure liquidity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================== CONTACT ================== -->
+<section id="contact" class="wrap reveal">
+  <h2 class="h">Contact</h2>
+  <p class="muted">Fastest way to start: ping us on Telegram or launch the airdrop bot.</p>
+  <div class="cta" style="margin-top:10px">
+    <a class="btn primary" href="https://t.me/LaunchWise_airdropbot" target="_blank">Airdrop Bot</a>
+    <a class="btn" href="https://t.me/LaunchWiseSupport" target="_blank">@LaunchWiseSupport</a>
+    <a class="btn" href="https://t.me/LaunchWiseChannel" target="_blank">@LaunchWiseChannel</a>
+    <a class="btn" href="https://x.com/LaunchWiseHQ" target="_blank">X / LaunchWiseHQ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <div class="links" style="margin-bottom:6px">
+      <a href="#services">Services</a> • <a href="#process">Process</a> • <a href="#tokenomics">Tokenomics</a> • <a href="#pricing">Fees</a> • <a href="#contact">Contact</a>
+    </div>
+    © 2025 LaunchWise — All rights reserved.
+  </div>
+</footer>
+
+<!-- ================== SCRIPTS ================== -->
+<script>
+/* ---------- Starfield (ultra light) ---------- */
+const c = document.getElementById('field');
+const ctx = c.getContext('2d');
+let w,h,stars=[];
+function resize(){ w = c.width = innerWidth; h = c.height = innerHeight; stars = Array.from({length: Math.min(300, Math.floor(w*h/7000))}, () => ({
+  x: Math.random()*w, y: Math.random()*h, z: Math.random()*1+0.2, s: Math.random()*1.4+0.3
+})); }
+function tick(){
+  ctx.clearRect(0,0,w,h);
+  for(const p of stars){
+    p.y -= p.z; if(p.y< -10) p.y = h+10, p.x = Math.random()*w;
+    ctx.globalAlpha = p.z*0.9;
+    ctx.fillStyle = '#7efbff';
+    ctx.fillRect(p.x, p.y, p.s, p.s);
+  }
+  requestAnimationFrame(tick);
+}
+addEventListener('resize', resize); resize(); tick();
+
+/* ---------- Reveal on scroll ---------- */
+const io = new IntersectionObserver((els)=>els.forEach(e=>e.isIntersecting && e.target.classList.add('show')), {threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+        </html>
