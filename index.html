@@ -1,153 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LaunchWise - Web3 Launch Agency</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>LaunchWise — Web3 Launch Agency</title>
+
+  <!-- SEO / Social -->
+  <meta name="description" content="LaunchWise — Full Web3 token launch: tokenomics, smart contracts, airdrop/referral bot, investors, listings — 0→100."/>
+  <meta property="og:title" content="LaunchWise — Web3 Launch Agency"/>
+  <meta property="og:description" content="Tokenni 0 dan launchgacha: Tokenomics • Contracts • Airdrop Bot • Community • Investors • Listings"/>
+  <meta name="theme-color" content="#00eaff"/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet"/>
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background-color: #050505;
-      color: #e0e0e0;
-      line-height: 1.6;
-      overflow-x: hidden;
+    :root{
+      --bg:#05060e;--ink:#e8f1ff;--muted:#9aa7bd;
+      --g1:#00c3ff;--g2:#ff2dfc;--panel:#0b1022;--card:#0f1633;
     }
-    header {
-      background: radial-gradient(circle at top, #0ff, #005);
-      padding: 4rem 1rem;
-      text-align: center;
-      color: #fff;
-      animation: neonPulse 3s infinite;
-    }
-    @keyframes neonPulse {
-      0%, 100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
-      50% { text-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
-    }
-    header h1 {
-      margin: 0;
-      font-size: 3rem;
-      text-transform: uppercase;
-    }
-    header p {
-      margin-top: 1rem;
-      font-size: 1.2rem;
-      opacity: 0.8;
-    }
-    section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
-      margin: auto;
-      text-align: center;
-    }
-    h2 {
-      color: #0ff;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      text-shadow: 0 0 10px #0ff;
-    }
-    ul, ol {
-      list-style: none;
-      padding: 0;
-    }
-    ul li, ol li {
-      background: rgba(0, 255, 255, 0.05);
-      border: 1px solid rgba(0, 255, 255, 0.2);
-      margin: 0.5rem 0;
-      padding: 0.8rem;
-      border-radius: 8px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    ul li:hover, ol li:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 15px #0ff;
-    }
-    .contact a {
-      display: inline-block;
-      margin: 0.5rem;
-      padding: 0.8rem 1.4rem;
-      background: #0ff;
-      color: #000;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    .contact a:hover {
-      background: #000;
-      color: #0ff;
-      box-shadow: 0 0 15px #0ff;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #000;
-      font-size: 0.9rem;
-      color: #777;
-    }
-    /* Floating animation for WOW effect */
-    .float {
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:#9ae7ff;text-decoration:none}
+    .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:50;background:rgba(5,6,14,.7);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;gap:10px;align-items:center}
+    .logoBox{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 0 24px rgba(0,195,255,.35)}
+    .brand b{letter-spacing:.3px}
+    .nav a.btn{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--g1),var(--g2));color:#fff;font-weight:800}
+    .links{display:none;gap:18px}
+    .hamb{display:inline-flex;gap:6px;flex-direction:column}
+    .hamb span{width:22px;height:2px;background:#fff;border-radius:2px;opacity:.85}
+    @media(min-width:860px){.links{display:flex}.hamb{display:none}}
+
+    /* HERO */
+    .hero{padding:84px 0;background:
+      radial-gradient(900px 600px at 10% -10%, rgba(0,195,255,.18), transparent 60%),
+      radial-gradient(900px 600px at 90% 0%, rgba(255,45,252,.12), transparent 55%)}
+    .hero h1{font-size:clamp(34px,6vw,60px);line-height:1.05;margin:10px 0 14px;background:linear-gradient(90deg,var(--g1),var(--g2));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .sub{color:var(--muted);max-width:860px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{padding:12px 18px;border-radius:14px;font-weight:800;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .btn.primary{background:linear-gradient(90deg,var(--g1),var(--g2));border:none}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:12px;margin-right:8px}
+
+    /* SECTIONS */
+    section{padding:60px 0;border-top:1px solid rgba(255,255,255,.06)}
+    h2{font-size:28px;margin:0 0 14px}
+    .muted{color:var(--muted)}
+
+    .grid{display:grid;gap:16px}
+    @media(min-width:760px){.cols-2{grid-template-columns:repeat(2,1fr)}.cols-3{grid-template-columns:repeat(3,1fr)}.cols-4{grid-template-columns:repeat(4,1fr)}}
+    .card{background:var(--card);padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .card h3{margin:6px 0 10px;font-size:18px}
+
+    footer{padding:26px 0;background:#060913;color:#9aa3b2;font-size:14px;text-align:center}
+
+    /* Mobile drawer */
+    .drawer{display:none;position:fixed;inset:0;background:rgba(5,6,14,.96);backdrop-filter:blur(10px);padding:24px}
+    .drawer a{display:block;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .drawer .close{position:absolute;top:14px;right:16px;font-size:28px}
+
+    /* Simple float for logo */
+    .float{animation:float 4s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
   </style>
 </head>
 <body>
-  <header>
-    <h1 class="float">🚀 LaunchWise</h1>
-    <p>From Idea to Launch – Full Web3 Token Agency</p>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <div class="logoBox">
+          <!-- Inline SVG logo (PNG kerak emas) -->
+          <svg class="float" width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop offset="0" stop-color="#00c3ff"/><stop offset="1" stop-color="#ff2dfc"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 3c3.6 2.3 5.7 7 5.1 10.9a1 1 0 0 1-.3.6l-3.3 3.3a1 1 0 0 1-.7.3H9.3a1 1 0 0 1-.7-.3l-3.3-3.3a1 1 0 0 1-.3-.6C4.6 9.9 8.4 4.9 12 3Z" stroke="white"/>
+            <circle cx="12" cy="9" r="2" stroke="white"/>
+          </svg>
+        </div>
+        <b>LaunchWise</b>
+      </div>
+      <div class="links">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#why">Why Us</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="https://t.me/LaunchWise_airdropbot">Join Airdrop</a>
+      </div>
+      <button class="hamb" id="open"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- MOBILE DRAWER -->
+  <div class="drawer" id="drawer">
+    <a class="close" id="close">✕</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact">Contact</a>
+    <a class="btn" href="https://t.me/LaunchWise_airdropbot">🚀 Join Airdrop</a>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="pill">Web3 Launch Agency</span>
+      <span class="pill">Security • Transparency</span>
+      <h1>From idea to investors — we launch your token the wise way.</h1>
+      <p class="sub">
+        Tokenomics, smart contracts, airdrop/referral bot, community, investors, listings — end-to-end (0→100).
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="https://t.me/LaunchWise_airdropbot">🚀 Join Airdrop Bot</a>
+        <a class="btn" href="https://t.me/LaunchWiseSupport">👋 Talk to Support</a>
+        <!-- Keyin tayyor bo‘lsa shu linkni almashtirasan -->
+        <a class="btn" href="#" onclick="alert('Tokenomics linkni keyin qo‘shasiz 🙂');return false;">📑 Tokenomics</a>
+      </div>
+    </div>
   </header>
 
+  <!-- SERVICES -->
   <section id="services">
-    <h2>Our Services</h2>
-    <ul>
-      <li>✅ Smart Contract Development & Audit</li>
-      <li>✅ Tokenomics Design & Strategy</li>
-      <li>✅ Airdrop & Referral Bots</li>
-      <li>✅ Community Building (Telegram, Discord, X)</li>
-      <li>✅ Investor Relations & Fundraising</li>
-      <li>✅ Marketing & PR Campaigns</li>
-      <li>✅ Full Launch Support (0 → 100)</li>
-    </ul>
+    <div class="wrap">
+      <h2>Services</h2>
+      <p class="muted">Everything your token needs — bir joyda.</p>
+      <div class="grid cols-3">
+        <div class="card"><h3>Discovery & Strategy</h3><p>Utility, roadmap, competitive analysis, compliance checklist.</p></div>
+        <div class="card"><h3>Tokenomics</h3><p>Supply, allocations, vesting, emissions, staking & burns, simulations.</p></div>
+        <div class="card"><h3>Smart Contracts</h3><p>ERC-20/721/1155, tests, audit support, multi-chain deployments.</p></div>
+        <div class="card"><h3>Airdrop & Referral Bot</h3><p>Wallet binding, anti-sybil, referral tree, dashboards.</p></div>
+        <div class="card"><h3>Community & Growth</h3><p>Telegram/Discord ops, content, quests, ambassadors, analytics.</p></div>
+        <div class="card"><h3>Investor Relations</h3><p>Pitch deck, data-room, outreach, SAFT/vesting, KPI reporting.</p></div>
+        <div class="card"><h3>Launch & Liquidity</h3><p>DEX/CEX listings, liquidity plans, MM partners.</p></div>
+        <div class="card"><h3>Post-Launch Ops</h3><p>Governance, upgrades, audits, partnerships.</p></div>
+        <div class="card"><h3>Support</h3><p>24/7 ops, transparency, security-first workflows.</p></div>
+      </div>
+    </div>
   </section>
 
+  <!-- PROCESS -->
   <section id="process">
-    <h2>Our Process</h2>
-    <p>We handle every step of your token launch:</p>
-    <ol>
-      <li>🚀 Idea & Strategy</li>
-      <li>📑 Tokenomics & Whitepaper</li>
-      <li>💻 Smart Contract Development</li>
-      <li>🤖 Bot & Airdrop Integration</li>
-      <li>👥 Community Building</li>
-      <li>💰 Investor Outreach</li>
-      <li>📈 Listing & Post-Launch Support</li>
-    </ol>
+    <div class="wrap">
+      <h2>0 → 100 Process</h2>
+      <div class="grid cols-2">
+        <div class="card"><h3>1) Idea & Scope</h3><p>Goals, milestones, timeline.</p></div>
+        <div class="card"><h3>2) Tokenomics Blueprint</h3><p>Allocation & vesting model.</p></div>
+        <div class="card"><h3>3) Contracts & Security</h3><p>Implementation, tests, audit review.</p></div>
+        <div class="card"><h3>4) Airdrop Engine</h3><p>Referral + anti-sybil, wallet binding.</p></div>
+        <div class="card"><h3>5) Community & Comms</h3><p>Channels, content calendar.</p></div>
+        <div class="card"><h3>6) Investor Outreach</h3><p>Intros, follow-ups, reporting.</p></div>
+        <div class="card"><h3>7) Launch & Liquidity</h3><p>DEX/CEX coordination, MM.</p></div>
+        <div class="card"><h3>8) Post-Launch</h3><p>Governance, upgrades, growth.</p></div>
+      </div>
+    </div>
   </section>
 
+  <!-- WHY -->
   <section id="why">
-    <h2>Why LaunchWise?</h2>
-    <p>
-      We are a Web3 launch agency that takes full responsibility for your project.<br>
-      From concept to investor-ready product, LaunchWise covers all aspects of token creation, growth, and sustainability.
-    </p>
+    <div class="wrap">
+      <h2>Why LaunchWise?</h2>
+      <div class="grid cols-3">
+        <div class="card"><h3>Security First</h3><p>Best practices + audit support. Transparent ops.</p></div>
+        <div class="card"><h3>Speed & Execution</h3><p>MVP fast, scale with data. Clear milestones.</p></div>
+        <div class="card"><h3>All-in-one</h3><p>Strategy → tech → growth → investors — barchasi bitta joyda.</p></div>
+      </div>
+    </div>
   </section>
 
-  <section class="contact" id="contact">
-    <h2>Contact Us</h2>
-    <a href="https://t.me/LaunchWiseSupport">Telegram Support</a>
-    <a href="https://t.me/LaunchWise_airdropbot">Airdrop Bot</a>
-    <a href="https://t.me/LaunchWiseChannel">Telegram Channel</a>
-    <a href="https://x.com/LaunchWiseHQ">X (Twitter)</a>
-    <a href="mailto:launchwise@gmail.com">Email</a>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact & Links</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>Talk to us</h3>
+          <p>Telegram Support: <a href="https://t.me/LaunchWiseSupport">@LaunchWiseSupport</a></p>
+          <p>Email: <a href="mailto:launchwise@gmail.com">launchwise@gmail.com</a></p>
+          <p>X / Twitter: <a href="https://x.com/LaunchWiseHQ">@LaunchWiseHQ</a></p>
+        </div>
+        <div class="card">
+          <h3>Community & Airdrop</h3>
+          <p>Bot: <a href="https://t.me/LaunchWise_airdropbot">@LaunchWise_airdropbot</a></p>
+          <p>Channel: <a href="https://t.me/LaunchWiseChannel">@LaunchWiseChannel</a></p>
+          <div class="cta" style="margin-top:8px">
+            <a class="btn primary" href="https://t.me/LaunchWise_airdropbot">🚀 Join Airdrop</a>
+            <a class="btn" href="https://t.me/LaunchWiseSupport">👋 Chat Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <footer>
-    © 2025 LaunchWise. All Rights Reserved.
+    © 2025 LaunchWise. All rights reserved.
   </footer>
+
+  <script>
+    // Mobile drawer
+    const drawer=document.getElementById('drawer');
+    const openBtn=document.getElementById('open');
+    const closeBtn=document.getElementById('close');
+    openBtn&&openBtn.addEventListener('click',()=>drawer.style.display='block');
+    closeBtn&&closeBtn.addEventListener('click',()=>drawer.style.display='none');
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href'); const el=document.querySelector(id);
+        if(el){ e.preventDefault(); drawer.style.display='none'; window.scrollTo({top:el.offsetTop-70,behavior:'smooth'}); }
+      });
+    });
+  </script>
 </body>
-</html>
+              </html>
