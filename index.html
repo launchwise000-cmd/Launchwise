@@ -3,155 +3,151 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LaunchWise – Web3 Launch Agency</title>
+  <title>LaunchWise - Web3 Launch Agency</title>
   <style>
-    /* ====== Global Styles ====== */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0a0f1f;
-      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #050505;
+      color: #e0e0e0;
       line-height: 1.6;
+      overflow-x: hidden;
     }
-    a {
-      text-decoration: none;
-      color: #00c3ff;
+    header {
+      background: radial-gradient(circle at top, #0ff, #005);
+      padding: 4rem 1rem;
+      text-align: center;
+      color: #fff;
+      animation: neonPulse 3s infinite;
     }
-    h1, h2, h3 {
-      margin: 0 0 15px;
+    @keyframes neonPulse {
+      0%, 100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
+      50% { text-shadow: 0 0 20px #0ff, 0 0 40px #0ff; }
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      text-transform: uppercase;
+    }
+    header p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      opacity: 0.8;
     }
     section {
-      padding: 60px 20px;
-      max-width: 1100px;
+      padding: 3rem 1rem;
+      max-width: 1000px;
       margin: auto;
       text-align: center;
     }
-
-    /* ====== Hero ====== */
-    .hero {
-      background: linear-gradient(to right, #1a1446, #0a0f1f);
-      padding: 100px 20px;
+    h2 {
+      color: #0ff;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      text-shadow: 0 0 10px #0ff;
     }
-    .hero h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(90deg, #00c3ff, #ff2dfc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .cta-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: linear-gradient(90deg, #00c3ff, #ff2dfc);
-      color: #fff;
-      font-weight: bold;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-    .cta-btn:hover {
-      opacity: 0.85;
-    }
-
-    /* ====== Services ====== */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-    }
-    .service {
-      background: #151a33;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-
-    /* ====== Roadmap ====== */
-    .roadmap {
-      text-align: left;
-      background: #11162e;
-      border-radius: 12px;
-      padding: 20px;
-    }
-    .roadmap ul {
+    ul, ol {
       list-style: none;
       padding: 0;
     }
-    .roadmap li {
-      margin: 15px 0;
-      padding-left: 10px;
-      border-left: 3px solid #00c3ff;
+    ul li, ol li {
+      background: rgba(0, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      margin: 0.5rem 0;
+      padding: 0.8rem;
+      border-radius: 8px;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-
-    /* ====== Contact ====== */
-    .contact-links a {
-      display: block;
-      margin: 8px 0;
+    ul li:hover, ol li:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px #0ff;
+    }
+    .contact a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.8rem 1.4rem;
+      background: #0ff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 25px;
       font-weight: bold;
+      transition: all 0.3s;
     }
-
+    .contact a:hover {
+      background: #000;
+      color: #0ff;
+      box-shadow: 0 0 15px #0ff;
+    }
     footer {
-      background: #060913;
-      padding: 15px;
       text-align: center;
+      padding: 1rem;
+      background: #000;
       font-size: 0.9rem;
-      color: #aaa;
+      color: #777;
+    }
+    /* Floating animation for WOW effect */
+    .float {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
     }
   </style>
 </head>
 <body>
-  <!-- ===== Hero Section ===== -->
-  <section class="hero">
-    <h1>LaunchWise</h1>
-    <p>Launch your token the wise way – from idea to investors.</p>
-    <a href="https://t.me/LaunchWise_airdropbot" class="cta-btn">🚀 Join Airdrop Bot</a>
-  </section>
+  <header>
+    <h1 class="float">🚀 LaunchWise</h1>
+    <p>From Idea to Launch – Full Web3 Token Agency</p>
+  </header>
 
-  <!-- ===== About ===== -->
-  <section>
-    <h2>About LaunchWise</h2>
-    <p>LaunchWise is a Web3 launch agency helping projects from tokenomics to investor outreach. 
-       We provide complete solutions to bring your idea into reality.</p>
-  </section>
-
-  <!-- ===== Services ===== -->
-  <section>
+  <section id="services">
     <h2>Our Services</h2>
-    <div class="services">
-      <div class="service"><h3>⚡ Tokenomics</h3><p>Professional tokenomics design for sustainable growth.</p></div>
-      <div class="service"><h3>🔒 Smart Contracts</h3><p>Secure, audited smart contracts tailored to your project.</p></div>
-      <div class="service"><h3>🤖 Bots & Automation</h3><p>Telegram bots and automation tools for your community.</p></div>
-      <div class="service"><h3>💼 Investor Outreach</h3><p>Connecting your project with the right investors and partners.</p></div>
-    </div>
+    <ul>
+      <li>✅ Smart Contract Development & Audit</li>
+      <li>✅ Tokenomics Design & Strategy</li>
+      <li>✅ Airdrop & Referral Bots</li>
+      <li>✅ Community Building (Telegram, Discord, X)</li>
+      <li>✅ Investor Relations & Fundraising</li>
+      <li>✅ Marketing & PR Campaigns</li>
+      <li>✅ Full Launch Support (0 → 100)</li>
+    </ul>
   </section>
 
-  <!-- ===== Roadmap ===== -->
-  <section>
-    <h2>Roadmap</h2>
-    <div class="roadmap">
-      <ul>
-        <li><b>Q1:</b> Tokenomics & Airdrop Bot (✅ MVP ready)</li>
-        <li><b>Q2:</b> Smart Contracts & Investor Outreach</li>
-        <li><b>Q3:</b> Token Launch Support</li>
-        <li><b>Q4:</b> Ecosystem Growth & Partnerships</li>
-      </ul>
-    </div>
+  <section id="process">
+    <h2>Our Process</h2>
+    <p>We handle every step of your token launch:</p>
+    <ol>
+      <li>🚀 Idea & Strategy</li>
+      <li>📑 Tokenomics & Whitepaper</li>
+      <li>💻 Smart Contract Development</li>
+      <li>🤖 Bot & Airdrop Integration</li>
+      <li>👥 Community Building</li>
+      <li>💰 Investor Outreach</li>
+      <li>📈 Listing & Post-Launch Support</li>
+    </ol>
   </section>
 
-  <!-- ===== Contact ===== -->
-  <section>
+  <section id="why">
+    <h2>Why LaunchWise?</h2>
+    <p>
+      We are a Web3 launch agency that takes full responsibility for your project.<br>
+      From concept to investor-ready product, LaunchWise covers all aspects of token creation, growth, and sustainability.
+    </p>
+  </section>
+
+  <section class="contact" id="contact">
     <h2>Contact Us</h2>
-    <div class="contact-links">
-      <a href="https://t.me/LaunchWiseSupport">📩 Telegram Support</a>
-      <a href="https://t.me/LaunchWise_airdropbot">🤖 Airdrop Bot</a>
-      <a href="https://t.me/LaunchWiseChannel">📢 Telegram Channel</a>
-      <a href="https://twitter.com/LaunchWiseHQ">🕊️ Twitter / X</a>
-      <a href="mailto:support@launchwise.com">📧 Email: support@launchwise.com</a>
-    </div>
+    <a href="https://t.me/LaunchWiseSupport">Telegram Support</a>
+    <a href="https://t.me/LaunchWise_airdropbot">Airdrop Bot</a>
+    <a href="https://t.me/LaunchWiseChannel">Telegram Channel</a>
+    <a href="https://x.com/LaunchWiseHQ">X (Twitter)</a>
+    <a href="mailto:launchwise@gmail.com">Email</a>
   </section>
 
-  <!-- ===== Footer ===== -->
   <footer>
-    © 2025 LaunchWise. All rights reserved.
+    © 2025 LaunchWise. All Rights Reserved.
   </footer>
 </body>
-  </html>
+</html>
